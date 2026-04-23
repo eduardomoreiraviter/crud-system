@@ -1,0 +1,13 @@
+package com.viter.desafiocrudevsuperior;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class DesafiocrudevsuperiorApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
