@@ -1,0 +1,10 @@
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Eduardo Green', '12345678901', 2000.00, '2026-08-09', 0);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Bilbo Bolseiro', '98765432100', 40000.00, '1986-05-18', 0);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Gandalf O Cinzento', '11122233344', 0.00, '1200-01-03', 0);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Shadowfax', '55566677788', 10.00, '1000-10-04', 0);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Smaug', '99988877766', 5000000.00, '1000-08-09', 0);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Billi Walther Jows', '33344455566', 1500.00, '1996-06-20', 0);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Frodo Baggins', '44455566677', 800.00, '1998-09-22', 0);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Samwise Gamgee', '77788899900', 1200.00, '1990-04-06', 3);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Arwen Undomiel', '22211100099', 35000.00, '0241-06-25', 0);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Legolas Greenleaf', '66677788811', 12000.00, '0087-10-15', 2);
