@@ -48,6 +48,11 @@ public class ClientService {
         return new ClientDTO(entity);
     }
 
+    @Transactional(readOnly = true)
+    public void delete(Long id){
+        repository.deleteById(id);
+    }
+
     private void CopyDtoToEntity(ClientDTO dto, Client entity) {
         entity.setName(dto.getName());
         entity.setCpf(dto.getCpf());
@@ -55,4 +60,6 @@ public class ClientService {
         entity.setBirthDate(dto.getBirthDate());
         entity.setChildren(dto.getChildren());
     }
+
+
 }
