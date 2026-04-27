@@ -3,6 +3,7 @@ package com.viter.desafiocrudevsuperior.service;
 import com.viter.desafiocrudevsuperior.dto.ClientDTO;
 import com.viter.desafiocrudevsuperior.entite.Client;
 import com.viter.desafiocrudevsuperior.repositorie.ClientRepository;
+import com.viter.desafiocrudevsuperior.service.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,10 +21,9 @@ public class ClientService {
 
     @Transactional(readOnly = true)
     public ClientDTO findById(Long id){
-        Optional<Client> result = repository.findById(id);
-        Client client = result.get();
-        ClientDTO dto = new ClientDTO(client);
-        return dto;
+        Client client  = repository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Recurso não encontrado"));
+        return new ClientDTO(client);
     }
 
     @Transactional(readOnly = true)
