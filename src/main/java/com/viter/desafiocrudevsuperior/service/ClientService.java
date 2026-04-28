@@ -3,11 +3,15 @@ package com.viter.desafiocrudevsuperior.service;
 import com.viter.desafiocrudevsuperior.dto.ClientDTO;
 import com.viter.desafiocrudevsuperior.entite.Client;
 import com.viter.desafiocrudevsuperior.repositorie.ClientRepository;
+import com.viter.desafiocrudevsuperior.service.exceptions.DatabaseException;
 import com.viter.desafiocrudevsuperior.service.exceptions.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -42,15 +46,28 @@ public class ClientService {
 
     @Transactional
     public ClientDTO update(Long id, ClientDTO dto){
-        Client entity = repository.getReferenceById(id);
-        CopyDtoToEntity(dto, entity);
-        entity = repository.save(entity);
-        return new ClientDTO(entity);
+        try {
+            Client entity = repository.getReferenceById(id);
+            CopyDtoToEntity(dto, entity);
+            entity = repository.save(entity);
+            return new ClientDTO(entity);
+        }
+        catch (EntityNotFoundException e){
+            throw new ResourceNotFoundException("Recurso não encontrado");
+        }
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public void delete(Long id){
-        repository.deleteById(id);
+        if (!repository.existsById(id)) {
+            throw new ResourceNotFoundException("Recurso não encontrado");
+        }
+        try {
+            repository.deleteById(id);
+        }
+        catch (DataIntegrityViolationException e) {
+            throw new DatabaseException("Falha de integridade referencial");
+        }
     }
 
     private void CopyDtoToEntity(ClientDTO dto, Client entity) {
