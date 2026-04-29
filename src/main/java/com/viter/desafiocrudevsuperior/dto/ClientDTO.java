@@ -1,14 +1,20 @@
 package com.viter.desafiocrudevsuperior.dto;
 
 import com.viter.desafiocrudevsuperior.entite.Client;
+import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
 
 public class ClientDTO {
 
     private Long id;
+
+    @Size(min = 3, max = 100, message = "nome precisa ter de 3 a 100 caracteres")
+    @NotBlank(message = "precisa de nome")
     private String name;
     private String cpf;
+
+    @Positive(message = "o salario precisa ser positivo")
     private Double income;
     private LocalDate birthDate;
     private Integer children;
